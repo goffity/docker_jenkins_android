@@ -105,11 +105,12 @@ ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-w
 
 # could use ADD but this one does not check Last-Modified header neither does it allow to control checksum 
 # see https://github.com/docker/docker/issues/8331
-#RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war && echo "${JENKINS_SHA}  /usr/share/jenkins/jenkins.war" | sha256sum -c -
+RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war 
+#&& echo "${JENKINS_SHA}  /usr/share/jenkins/jenkins.war" | sha256sum -c -
 
 ENV JENKINS_UC https://updates.jenkins.io
 ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
-RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
+#RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins /usr/share/jenkins/ref
 
 # for main web interface:
 EXPOSE ${http_port}
@@ -119,7 +120,7 @@ EXPOSE ${agent_port}
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-USER ${user}
+#USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
