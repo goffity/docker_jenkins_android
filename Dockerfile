@@ -7,9 +7,18 @@ RUN apt-get install -y curl
 RUN apt-get install -y wget 
 RUN apt-get install -y expect 
 RUN apt-get install -y zip 
-RUN apt-get install -y unzip 
-RUN apt-get install -y gradle
+RUN apt-get install -y unzip
 RUN rm -rf /var/lib/apt/lists/*
+
+####################################### Gradle
+
+RUN mkdir /opt/gradle
+
+RUN wget https://services.gradle.org/distributions/gradle-3.4.1-bin.zip
+
+RUN unzip -d /opt/gradle gradle-3.4.1-bin.zip
+
+RUN export PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
 
 ###################### ANDROID ##########################
 
