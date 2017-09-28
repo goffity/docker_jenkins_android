@@ -4,6 +4,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y git
 RUN apt-get install -y curl
+RUN apt-get install -y maven
 RUN apt-get install -y wget 
 RUN apt-get install -y expect 
 RUN apt-get install -y zip 
